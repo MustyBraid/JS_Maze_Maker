@@ -1,0 +1,22 @@
+{
+  "name": "js_maze_maker",
+  "version": "1.0.0",
+  "description": "Using cli Javascript to make mazes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MustyBraid/JS_Maze_Maker.git"
+  },
+  "author": "Casey Chartier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MustyBraid/JS_Maze_Maker/issues"
+  },
+  "homepage": "https://github.com/MustyBraid/JS_Maze_Maker#readme",
+  "dependencies": {
+    "inquirer": "^9.2.7"
+  }
+}
