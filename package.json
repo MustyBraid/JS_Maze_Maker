@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MustyBraid/JS_Maze_Maker#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "inquirer": "^9.2.7"
   }
 }

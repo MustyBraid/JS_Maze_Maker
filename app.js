@@ -11,6 +11,7 @@ return JSON*/
 4. Flip all remaining 2s to 1s */
 
 import inquirer from "inquirer";
+import fs from "fs";
 
 inquirer.prompt([{
     name: "length", message: "How many rows?",
@@ -42,6 +43,7 @@ inquirer.prompt([{
         randWalk(guidePosts.maze, guidePosts.guidePosts);
         mazeFinisher(maze);
         logMaze(maze);
+        fs.writeFileSync('mazefile' + randomInt(0, 9999) + ".json", JSON.stringify(maze));
     });
     
 function placeGuideposts (maze, complexity) {
