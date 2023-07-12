@@ -43,7 +43,11 @@ inquirer.prompt([{
         randWalk(guidePosts.maze, guidePosts.guidePosts);
         mazeFinisher(maze);
         logMaze(maze);
-        fs.writeFileSync('mazefile' + randomInt(0, 9999) + ".json", JSON.stringify(maze));
+        let filename = 'mazes/mazefile' + randomInt(0, 9999) + ".json";
+        if (!checkIfFilenameExists(filename)){
+            fs.writeFileSync(filename, JSON.stringify(maze));
+        }
+        
     });
     
 function placeGuideposts (maze, complexity) {
@@ -189,3 +193,13 @@ function mazeFinisher (maze) {
         }
     }
 };
+
+function checkIfFilenameExists(filename) {
+    let currDirFiles = fs.readdir(`${filename}`, ()=>{});
+    console.log(filename);
+    if (fs.existsSync(filename)){
+        console.log('File already exists!!!!');
+        return true;
+    }
+    return false;
+}
