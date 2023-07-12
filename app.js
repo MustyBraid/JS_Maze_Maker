@@ -23,7 +23,6 @@ inquirer.prompt([{
     name: "complexity", message: "How complex should the maze be?"
     // length: 30, width: 43, complexity: 7, causes crash??
 }]).then(answers => {
-        console.log(answers);
         let length = answers.length;
         let width = answers.width;
         let maze = [];
@@ -42,7 +41,7 @@ inquirer.prompt([{
         let guidePosts = placeGuideposts(maze, answers.complexity);
         randWalk(guidePosts.maze, guidePosts.guidePosts);
         mazeFinisher(maze);
-        logMaze(maze);
+        //logMaze(maze);
         let filename = 'mazes/mazefile' + randomInt(0, 9999) + ".json";
         if (!checkIfFilenameExists(filename)){
             fs.writeFileSync(filename, JSON.stringify(maze));
@@ -65,7 +64,7 @@ function placeGuideposts (maze, complexity) {
     guidePosts.unshift(outerGuidepost(wall, maze));
     wall = randomInt(0,3);
     guidePosts.push(outerGuidepost(wall, maze));
-    console.log(guidePosts);
+    //console.log(guidePosts);
     return {maze, guidePosts};
 }
 
@@ -78,7 +77,7 @@ function outerGuidepost (wall, maze) {
                 0, 
                 randomInt(0, maze[1].length - 1)
             ];
-            console.log(post);
+            //console.log(post);
             maze[post[0]][post[1]] = 0;
             return (post);
         case 1:
@@ -87,7 +86,7 @@ function outerGuidepost (wall, maze) {
                 maze[0].length - 1, 
                 randomInt(0, maze[1].length - 1)
             ];
-            console.log(post);
+            //console.log(post);
             maze[post[0]][post[1]] = 0;
             return (post);
         case 2:
@@ -96,7 +95,7 @@ function outerGuidepost (wall, maze) {
                 randomInt(0, maze[0].length - 1),
                 0    
             ];
-            console.log(post);
+            //console.log(post);
             maze[post[0]][post[1]] = 0;
             return (post);
         case 3:
@@ -105,7 +104,7 @@ function outerGuidepost (wall, maze) {
                 randomInt(0, maze[0].length - 1), 
                 maze[1].length - 1
             ];
-            console.log(post);
+            //console.log(post);
             maze[post[0]][post[1]] = 0;
             return (post);
     }
@@ -143,13 +142,13 @@ function randWalk (arr, guidePosts) {
             let [newX, newY] = stepReturn;
             if (distance(currentX, currentY, guidePosts[i][0], guidePosts[i][1]) >= distance(newX, newY, guidePosts[i][0], guidePosts[i][1])) {
               if (checkBounds([newX, newY], arr)) {
-                console.log('stepped closer!')
+                //console.log('stepped closer!')
                 currentX = newX;
                 currentY = newY;
                 arr[currentX][currentY] = 0;
               }
               else {
-                console.log('out of bounds');
+                //console.log('out of bounds');
               }
             }
             else {
@@ -158,8 +157,8 @@ function randWalk (arr, guidePosts) {
                 
             }
         }
-        logMaze(arr);
-        console.log('guidepost reached!')
+        //logMaze(arr);
+        console.log(`guidepost ${i} of ${guidePosts.length} reached!`)
     }
 }
 
