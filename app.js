@@ -10,6 +10,10 @@ return JSON*/
 3. using distance equation, randwalk from each guidepost to the next, assigning each space to 0 as you go.'
 4. Flip all remaining 2s to 1s */
 
+//maze[0].length counts how long a row is
+//maze.length counts how many rows there are (columns!)
+// indexing into maze[] gives you a specific row, indexing into maze[0][] would give you a column value from row 0
+
 import inquirer from "inquirer";
 import fs from "fs";
 
@@ -38,6 +42,7 @@ inquirer.prompt([{
                 }
             }
         }
+        console.log(`Maze.length: ${maze.length}, Maze[0].length: ${maze[0].length}`);
         let guidePosts = placeGuideposts(maze, answers.complexity);
         randWalk(guidePosts.maze, guidePosts.guidePosts);
         mazeFinisher(maze);
@@ -75,7 +80,7 @@ function outerGuidepost (wall, maze) {
             //Left wall
             post = [
                 0, 
-                randomInt(0, maze[1].length - 1)
+                randomInt(0, maze[0].length - 1)
             ];
             //console.log(post);
             maze[post[0]][post[1]] = 0;
@@ -83,8 +88,8 @@ function outerGuidepost (wall, maze) {
         case 1:
             //Right wall
             post = [
-                maze[0].length - 1, 
-                randomInt(0, maze[1].length - 1)
+                maze.length - 1, 
+                randomInt(0, maze[0].length - 1)
             ];
             //console.log(post);
             maze[post[0]][post[1]] = 0;
@@ -92,7 +97,7 @@ function outerGuidepost (wall, maze) {
         case 2:
             //bottom wall
             post = [
-                randomInt(0, maze[0].length - 1),
+                randomInt(0, maze.length - 1),
                 0    
             ];
             //console.log(post);
@@ -101,12 +106,14 @@ function outerGuidepost (wall, maze) {
         case 3:
             //top wall
             post = [
-                randomInt(0, maze[0].length - 1), 
-                maze[1].length - 1
+                randomInt(0, maze.length - 1), 
+                maze[0].length - 1
             ];
             //console.log(post);
             maze[post[0]][post[1]] = 0;
             return (post);
+        default:
+            console.log("We hit the default case!");
     }
 }
 
